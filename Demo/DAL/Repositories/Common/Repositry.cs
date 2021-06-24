@@ -141,7 +141,22 @@ namespace Demo.DAL.Repositories.Common
 
         public int Update(TEntity entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (entity==null)
+                {
+                    throw new ArgumentNullException(nameof(entity));
+                }
+                var set = _context.Set<TEntity>();
+                _context.Update(set);
+               
+            }
+            catch (Exception ex)
+            {
+
+                _logger.LogError(new EventId(), ex, ex.Message);
+            }
+            return _context.SaveChanges();
         }
 
         public int Update(IEnumerable<TEntity> entities)

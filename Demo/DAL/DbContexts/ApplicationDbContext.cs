@@ -13,6 +13,10 @@ namespace Demo.DAL.DbContexts
     {
         public DbSet<Employee> Employees { get; set; }
 
+        public ApplicationDbContext(DbContextOptions options):base(options)
+        {
+
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
